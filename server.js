@@ -69,6 +69,14 @@ const resolvers = {
 const pubsub = new PubSub();
 
 const server = new GraphQLServer({ typeDefs, resolvers, context: {pubsub} });
+
+server.listen({ port: 4000 }).then(({ url }) => {
+    console.log(`
+      🚀  Server is ready at ${url}
+      📭  Query at https://studio.apollographql.com/dev
+    `);
+});
+
 server.start(({port}) => {
     console.log(`Server started on http://localhost:${port}`);
 })
